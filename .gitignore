@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+/dist/
+/release/
+
+# Vite / Electron cache and temporary files
+.vite/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment files
+.env
+.env.*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor settings
+.vscode/
+.idea/

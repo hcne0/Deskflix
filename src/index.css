@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-family: Inter, system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #141414;
+  color: #e5e5e5;
+}
+
+/* Hide scrollbars for carousels while keeping scroll functionality */
+.hide-scroll {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+.hide-scroll::-webkit-scrollbar {
+  display: none;             /* Chrome, Safari and Opera */
+}
+
+/* --- CINEMATIC ANIMATIONS --- */
+
+@keyframes kenburns {
+  0% { transform: scale(1) translate(0, 0); }
+  100% { transform: scale(1.1) translate(-1%, -1%); }
+}
+
+@keyframes fadeTo80 { 
+  from { opacity: 0; } 
+  to { opacity: 0.8; } 
+}
+
+@keyframes fadeTo60 { 
+  from { opacity: 0; } 
+  to { opacity: 0.6; } 
+}
+
+/* Original Ken Burns (kept just in case you need it elsewhere) */
+.animate-kenburns {
+  animation: kenburns 30s ease-in-out infinite alternate;
+}
+
+/* Combined Premium Fades (Fade In + Ken Burns) */
+.anim-hero {
+  animation: fadeTo80 1.2s ease-in-out forwards, kenburns 30s ease-in-out infinite alternate;
+}
+
+.anim-modal {
+  animation: fadeTo60 1.2s ease-in-out forwards, kenburns 30s ease-in-out infinite alternate;
+}
