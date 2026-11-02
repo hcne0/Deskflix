@@ -4,7 +4,11 @@ Deskflix is an offline-first, cinematic media engine built for Windows. It bring
 
 Instead of relying on clunky external players, Deskflix features a proprietary Node.js + FFmpeg bridging server that processes, remuxes, and streams heavy MKV/HEVC files directly into a custom HTML5 React video player in real-time.
 
-![Deskflix Home Screen](./assets/home-screen.png)
+
+<img width="2560" height="1410" alt="image" src="https://github.com/user-attachments/assets/889438d0-bfb0-4c61-88d8-acb26e3303d1" />
+
+<img width="2560" height="1410" alt="image" src="https://github.com/user-attachments/assets/84bdb6f2-491a-4c7c-80e8-199190535ff3" />
+
 
 ## 🚀 Technical Highlights
 
@@ -14,7 +18,7 @@ Instead of relying on clunky external players, Deskflix features a proprietary N
 * **Persistent State Management:** Automatically tracks and saves exact playback timestamps via IPC bridges, populating real-time "Continue Watching" progress bars on the home screen.
 * **Cinematic UI/UX:** Built with Tailwind CSS, featuring auto-hiding controls, CSS-filter brightness menus, dynamic aspect ratio toggles, and seamless animations.
 
-![Deskflix Player UI](./assets/player-ui.png)
+<img width="2560" height="1410" alt="image" src="https://github.com/user-attachments/assets/4306aa3d-29fa-4c46-a221-1e5576507806" />
 
 ## 🛠️ Tech Stack
 
