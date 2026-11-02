@@ -33,6 +33,34 @@ You do not need Node.js or a terminal to run Deskflix.
 
 ## 💻 Running Locally (For Developers)
 
+
+## 🛠️ Known Challenges & Contribution Guide
+
+We welcome pull requests! If you are looking for a complex engineering challenge to tackle, our biggest current roadblock involves the **FFmpeg Local Streaming Engine and Native Browser Seeking.**
+
+### The Problem: The "10-Second Chunk" Illusion
+Deskflix currently remuxes MKV/HEVC files on the fly into an H.264 stream that Chromium can read. It does this by spawning a child `ffmpeg` process in Node.js and piping `stdout` directly to the `localhost:8888` HTTP response. 
+
+Because the video is being generated in real-time, the server cannot send a valid `Content-Length` header to the frontend. As a result:
+1. The HTML5 `<video>` element treats the file as a "Live Stream".
+2. The browser only calculates the duration of the chunks it currently holds in memory (usually 10 to 20 seconds).
+3. Native video seeking completely breaks, as the browser doesn't know the file's true length.
+
+### Our Current Workaround
+We bypassed the native HTML5 controls entirely. We built a custom React UI (`Player.jsx`) that pulls the *true* duration of the video from our local database. When a user clicks the timeline, the frontend sends a hard reset to the backend (`?start=SECONDS`). The backend kills the current FFmpeg process and spawns a brand new one starting at the requested timestamp using `-ss`. 
+
+While seamless, this is computationally expensive and not a true "scrubbing" experience.
+
+### How You Can Help (The Bounty)
+We are looking for a contributor to help implement true **HTTP 206 Partial Content (Range Requests)** for the live FFmpeg stream. 
+
+If you can build a bridge in `main.cjs` that:
+1. Intercepts the browser's `Range: bytes=X-Y` header.
+2. Accurately translates that byte range into a time offset for FFmpeg.
+3. Successfully feeds the chunks back so the Chromium engine recognizes the full duration natively.
+
+...you will have solved the hardest technical debt in this repository! Please open an issue if you'd like to discuss the architecture before submitting a PR.
+
 If you want to clone and modify the source code:
 
 ```bash
